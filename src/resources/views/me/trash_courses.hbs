@@ -1,0 +1,127 @@
+<div class="mt-4">
+    <div>
+        <a href="/me/list_courses" class="trash">
+            <img src="/img/back_icon.png" alt="back" class="back_icon" />
+            Danh Sách Khoá Học</a>
+        <h2>Khoá Học Đã Xoá Của Bạn</h2>
+    </div>
+    <table class="table mt-4 table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên Khoá Học</th>
+                <th scope="col">Trình Độ</th>
+                <th scope="col" colspan="2">Thời Gian Tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.level}}</td>
+                    <td>@{{this.createdAt}}</td>
+                    <td>
+                        <a
+                            href=""
+                            class="btn btn-info btn-restore"
+                            data-id="{{this._id}}"
+                        >Khôi Phục</a>
+                        <a
+                            href=""
+                            class="btn btn-info btn-danger"
+                            data-id="{{this._id}}"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteCourseModal"
+                        >Xoá Vĩnh Viễn</a>
+                    </td>
+                </tr>
+            {{/each}}
+            {{#unless courses}}
+                <tr>
+                    <td colspan="5" class="text-center">
+                        Thùng rác trống !
+                        <a href="/me/list_courses">Trở về danh sách khoá học !</a>
+                    </td>
+                </tr>
+            {{/unless}}
+        </tbody>
+    </table>
+</div>
+
+{{! Confirm Form Delete Course }}
+<!-- Modal -->
+<div
+    class="modal fade"
+    id="deleteCourseModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xoá Vĩnh Viễn Khoá Học !</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <p> 
+                    Hành động này không thể khôi phục.
+                    Bạn có chắc chắn muốn xoá vĩnh viễn khoá học này không ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    id="btn-delete-course"
+                    class="btn btn-danger"
+                >Xoá Vĩnh Viễn
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                >Huỷ bỏ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{! Hidden form for DELETE Method }}
+<form method="POST" name="delete-course-form"></form>
+{{! Hidden form for RESTORE Method }}
+<form method="POST" name="restore-course-form"></form>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() { var courseId; var
+    btnDeleteCourse = document.getElementById('btn-delete-course'); var
+    deleteForm = document.forms['delete-course-form']; 
+    restoreForm = document.forms['restore-course-form']; 
+    var btnRestore =
+    $('.btn-restore');
+
+    
+    $('#deleteCourseModal').on('show.bs.modal', function (event) { 
+        var button = $(event.relatedTarget); 
+        courseId = button.data('id'); });
+    // When Delete btn clicked
+    btnDeleteCourse.onclick = function() { 
+        deleteForm.action = '/courses/' + courseId + '/force?_method=DELETE'; 
+        deleteForm.submit(); };
+
+    // When Restore btn clicked
+    btnRestore.click(function(e) { 
+        e.preventDefault(); 
+        var courseId = $(this).data('id'); 
+        restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH'; 
+        restoreForm.submit();
+    }); 
+});
+</script>

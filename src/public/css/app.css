@@ -1,0 +1,66 @@
+.header {
+    color: cyan;
+    font-size: 3rem;
+}
+
+.footer {
+    color: #593382;
+    font-size: 2rem;
+}
+
+.body {
+    color: #8e7f9e;
+    font-size: 2rem;
+}
+
+.item {
+    margin: 30px 10px;
+    border: solid 1px transparent;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.menu {
+    background-color: #198754 !important;
+}
+
+.footer-menu {
+    color: #6f42c1 !important;
+    background-color: #198754 !important;
+}
+
+.menu .navbar-brand,
+.menu .nav-link {
+    color: #fd7e14 !important;
+}
+
+.footer-menu .nav-link {
+    color: #dc3545;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    object-fit: cover;
+}
+
+.trash {
+    text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.trash_icon,
+.back_icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none !important;
+}

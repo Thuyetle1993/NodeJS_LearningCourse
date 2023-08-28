@@ -1,0 +1,55 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "thuyet le ",
+  "main": "src/index.js",
+  "scripts": {
+    "nice": "prettier --single-quote --tab-width 4 --trailing-comma all --write \"src/**/*\"",
+    "beautiful": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect src/index.js ",
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --tab-width 4 --trailing-comma all --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thuyetle1993/nodeJS.git"
+  },
+  "keywords": [
+    "nodeJs",
+    "F8node",
+    "thuyetle_node"
+  ],
+  "author": "thuyet_le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thuyetle1993/nodeJS/issues"
+  },
+  "homepage": "https://github.com/Thuyetle1993/nodeJS#readme",
+  "dependencies": {
+    "epress": "^0.0.1-security",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.4.3",
+    "mongoose-delete": "^1.0.1",
+    "mongoose-slug-updater": "^3.3.0",
+    "node-sass": "^9.0.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "mongoose-slug-generator": "^1.0.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.1"
+  }
+}
